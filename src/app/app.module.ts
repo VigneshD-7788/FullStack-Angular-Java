@@ -10,9 +10,12 @@ import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
 import { MatTableModule } from '@angular/material/table';
 import { RegisterComponent } from './register/register.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ParentTwoComponent } from './parent-two/parent-two.component';
 import { ChildTwoComponent } from './child-two/child-two.component';
+import { ClientRegisterComponent } from './client-register/client-register.component';
+import { EmployeeRegisterService } from './employee-register.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -23,16 +26,19 @@ import { ChildTwoComponent } from './child-two/child-two.component';
     ChildComponent,
     RegisterComponent,
     ParentTwoComponent,
-    ChildTwoComponent
+    ChildTwoComponent,
+    ClientRegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatSnackBarModule,
+    ReactiveFormsModule,
     MatTableModule   
   ],
-  providers: [],
+  providers: [EmployeeRegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

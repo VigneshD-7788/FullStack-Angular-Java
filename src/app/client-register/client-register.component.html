@@ -1,0 +1,76 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<div style="text-align: center">
+    <h2 style="color: blue;">{{title}}</h2>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form [formGroup]="clientForm" (ngSubmit)="registerClient()">
+                <div class="form-group">
+                    <label for="salutation">Salutation</label>
+                    <select id="salutation" class="form-control" formControlName="salutation">
+                        <option value="" disabled>Select a salutation</option>
+                        <option *ngFor="let salutation of salutations" [value]="salutation">{{ salutation }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" class="form-control" formControlName="first_name">
+                    <div *ngIf="clientForm.get('first_name')?.invalid && clientForm.get('first_name')?.touched"
+                        class="is-invalid">
+                        <div *ngIf="clientForm.get('first_name')?.hasError('required')" class="error-message">First Name is required.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" class="form-control" formControlName="last_name">
+                    <div *ngIf="clientForm.get('last_name')?.invalid && clientForm.get('last_name')?.touched"
+                        class="is-invalid">
+                        <div *ngIf="clientForm.get('last_name')?.hasError('required')" class="error-message">Last Name is required.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" class="form-control" formControlName="email">
+                    <div *ngIf="clientForm.get('email')?.invalid && clientForm.get('email')?.touched"
+                        class="is-invalid">
+                        <div *ngIf="clientForm.get('email')?.hasError('required')" class="error-message">Email is required.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" class="form-control" formControlName="phone">
+                    <div *ngIf="clientForm.get('phone')?.invalid && clientForm.get('phone')?.touched"
+                        class="is-invalid">
+                        <div *ngIf="clientForm.get('phone')?.hasError('required')" class="error-message">Phone number is required.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sources">Sources</label>
+                    <select id="sources" class="form-control" formControlName="sources">
+                        <option value="" disabled>Select a source</option>
+                        <option *ngFor="let sources of sourceList" [value]="sources">{{ sources }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" class="form-control" formControlName="description"></textarea>
+                </div>
+
+                <!-- Repeat similar structure for other fields -->
+
+                <button type="submit" class="btn btn-primary" (click)="registerClient()">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="success"style="text-align: center">
+        <h2 style="color:green">{{message}}</h2>
+    </div>
+    <div *ngIf="!success"style="text-align: center">
+        <h2 style="color:red">{{message}}</h2>
+    </div>
+</div>
